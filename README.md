@@ -14,3 +14,5 @@ Native Android utility that gathers files related to Billie Eilish into one orga
 
 ## Build
 Open in Android Studio or run `gradle :app:assembleDebug` with Android SDK 35 installed.
+
+The included GitHub Actions workflow compiles and signature-verifies the debug APK.
