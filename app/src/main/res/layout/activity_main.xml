@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#0B0D10">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingTop="22dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="34dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="22dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:background="@drawable/bg_badge"
+                android:gravity="center"
+                android:text="BE"
+                android:textColor="#0B0D10"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Billie Backup"
+                    android:textColor="#F4F6F8"
+                    android:textSize="29sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="One clean folder. Every Billie file."
+                    android:textColor="#A4ACB8"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/bg_card"
+            android:orientation="vertical">
+            <TextView style="@style/CardTitle" android:text="1  Source folders" />
+            <TextView style="@style/CardDescription" android:text="Add Downloads, Pictures, Movies, Music, or any folder that may contain Billie Eilish files." />
+            <TextView
+                android:id="@+id/sourcesText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="14dp"
+                android:text="No source folders added yet."
+                android:textColor="#A4ACB8"
+                android:textSize="14sp" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:orientation="horizontal">
+                <Button
+                    android:id="@+id/addSource"
+                    style="@style/PrimaryButton"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="Add folder" />
+                <Button
+                    android:id="@+id/clearSources"
+                    style="@style/SecondaryButton"
+                    android:layout_width="104dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Clear" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/bg_card"
+            android:orientation="vertical">
+            <TextView style="@style/CardTitle" android:text="2  Backup destination" />
+            <TextView style="@style/CardDescription" android:text="The app creates a Billie Backup folder here, grouped into Images, Videos, Audio, Documents, and Other." />
+            <TextView
+                android:id="@+id/destinationText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="14dp"
+                android:text="No destination selected."
+                android:textColor="#A4ACB8"
+                android:textSize="14sp" />
+            <Button
+                android:id="@+id/chooseDestination"
+                style="@style/PrimaryButton"
+                android:layout_width="match_parent"
+                android:text="Choose destination" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/bg_card"
+            android:orientation="vertical">
+            <TextView style="@style/CardTitle" android:text="3  Match rules" />
+            <TextView style="@style/CardDescription" android:text="Matches Billie or Eilish anywhere in a name, ignoring capitalization. Files inside a matching folder are included too." />
+            <TextView style="@style/RuleLine" android:text="BILLIE   Billie, billie, Billie_Eilish…" />
+            <TextView style="@style/RuleLine" android:text="EILISH   Eilish anywhere in a file or folder name." />
+            <TextView style="@style/RuleLine" android:text="PARENT   IMG_001.jpg counts inside a matching folder." />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/bg_card"
+            android:orientation="vertical">
+            <TextView style="@style/CardTitle" android:text="4  Operation" />
+            <TextView style="@style/CardDescription" android:text="Copy is safest and stays selected by default. Move deletes an original only after its new copy succeeds." />
+            <CheckBox
+                android:id="@+id/moveCheck"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:buttonTint="#D7FF4F"
+                android:text="Move files instead of copying"
+                android:textColor="#F4F6F8"
+                android:textSize="15sp" />
+            <TextView
+                android:id="@+id/operationHint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Recommended: keep this off for the first backup."
+                android:textColor="#A4ACB8"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/previewButton"
+                style="@style/SecondaryButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Preview" />
+            <Button
+                android:id="@+id/backupButton"
+                style="@style/PrimaryButton"
+                android:layout_width="0dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:text="Start backup" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/statusText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_status"
+            android:text="Ready. Add your folders, then run a preview."
+            android:textColor="#F4F6F8"
+            android:textSize="14sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:letterSpacing="0.08"
+            android:text="LOCAL ONLY  ·  NO INTERNET  ·  NO ALL-FILES PERMISSION"
+            android:textColor="#A4ACB8"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</ScrollView>
