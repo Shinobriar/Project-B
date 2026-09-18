@@ -40,4 +40,4 @@ rootProject.name = "StickerTV-CI"
 include ":app"
 project(":app").projectDir = new File(stickerRoot, "app")
 
-// CI retrigger after base workflow SDK-path repair.
+// CI retrigger after verifier-path repair.
