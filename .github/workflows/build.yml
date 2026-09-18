@@ -27,7 +27,12 @@ jobs:
           test -x "$SDK/build-tools/35.0.0/apksigner"
           echo "ANDROID_HOME=$SDK" >> "$GITHUB_ENV"
       - name: Build debug APK
-        run: gradle --no-daemon :app:assembleDebug
+        run: |
+          gradle --no-daemon :app:tasks >/dev/null
+          if [ -f "StickerTV/MediaProcessor.final.java" ] && [ -d ".stickertv-src" ]; then
+            cp StickerTV/MediaProcessor.final.java .stickertv-src/app/src/main/java/com/raphael/stickertv/MediaProcessor.java
+          fi
+          gradle --no-daemon :app:assembleDebug
       - name: Verify APK
         run: |
           APK="app/build/outputs/apk/debug/app-debug.apk"
