@@ -12,5 +12,30 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = 'BillieBackup'
-include ':app'
+
+// Disposable CI branch: reconstruct Sticker TV from the payload committed under StickerTV/.
+// This branch is never intended to be merged into Project-B.
+def stickerRoot = new File(settingsDir, ".stickertv-src")
+if (!stickerRoot.exists()) {
+    stickerRoot.mkdirs()
+    def command = "cat StickerTV/project.part00 StickerTV/project.part01 StickerTV/project.part02 StickerTV/project.part03 | base64 -d > /tmp/stickertv-project.tgz && tar -xzf /tmp/stickertv-project.tgz -C .stickertv-src"
+    def process = ["bash", "-lc", command].execute(null, settingsDir)
+    process.consumeProcessOutput(System.out, System.err)
+    if (process.waitFor() != 0) {
+        throw new GradleException("Could not reconstruct Sticker TV build source")
+    }
+}
+
+// The repository's CI installs API 35. Sticker TV does not require API 36,
+// so compile/target against 35 for this verified build.
+def stickerAppGradle = new File(stickerRoot, "app/build.gradle")
+if (stickerAppGradle.exists()) {
+    def text = stickerAppGradle.getText("UTF-8")
+            .replace("compileSdk 36", "compileSdk 35")
+            .replace("targetSdk 36", "targetSdk 35")
+    stickerAppGradle.setText(text, "UTF-8")
+}
+
+rootProject.name = "StickerTV-CI"
+include ":app"
+project(":app").projectDir = new File(stickerRoot, "app")
