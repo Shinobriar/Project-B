@@ -20,8 +20,12 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.11.1'
-      - name: Install Android SDK components
-        run: yes | sdkmanager "platforms;android-35" "build-tools;35.0.0" >/dev/null
+      - name: Verify preinstalled Android SDK components
+        run: |
+          SDK="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
+          test -f "$SDK/platforms/android-35/android.jar"
+          test -x "$SDK/build-tools/35.0.0/apksigner"
+          echo "ANDROID_HOME=$SDK" >> "$GITHUB_ENV"
       - name: Build debug APK
         run: gradle --no-daemon :app:assembleDebug
       - name: Verify APK
